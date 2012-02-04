@@ -1,0 +1,145 @@
+\documentclass{beamer}
+% \usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{takahashi,listings,color,amsmath}
+\usepackage{ulem} % sout pour barrer
+\usepackage{wasysym} % \smiley \frownie
+\usepackage[T1]{fontenc}
+\lstset{ %
+    basicstyle=\ttfamily\small,
+    language=Perl,
+}
+
+\newcommand<>{\F}[1]{ \begin{frame} #1 \end{frame} }
+\newcommand<>{\FT}[2]{ \begin{frame} \frametitle{#1} #2 \end{frame} }
+\newcommand<>{\C}[1]{ \F{\lstinputlisting{#1}} }
+\newcommand<>{\H}[1]{ \F{\lstinputlisting[language=haskell]{#1}} }
+\newcommand<>{\T}[1]{ \takahashi{#1} }
+\newcommand<>{\L}[1]{
+   % \begin{itemize}[<+->]  #1
+   \begin{itemize}  #1
+   \end{itemize}
+}
+\newcommand<>{\PL}[1]{
+   \begin{itemize}[<+->]  #1
+   \end{itemize}
+}
+\newcommand<>{\SL}[2]{
+    \F{
+        \frametitle{#1}
+        \L{#2}
+    }
+}
+
+\newcommand<>{\A}[2]{
+    \begin{tabular}{#1} #2
+    \end{tabular}
+}
+
+\newcommand<>{\TL}[2]{ \T{\A{#1}{#2}} }
+\newcommand<>{\TC}[1]{ \T{\A{c}{#1}} }
+
+\begin{document}
+\F{
+   \A{ll}{
+    twitter  & @marcchantreux \\
+    freenode & eiro \\
+    homepage & http://khatar.phear.org \\
+    github   & http://github.com/eiro \\
+    % homepage & \url{http://khatar.phear.org} \\
+    % github   & \url{http://github.com/eiro} \\
+   }
+}
+\TC{ Perlude \\ FOSDEM 2012 }
+\TC{"time's up talk" \\ \pause ask your questions}
+\T{40mn}
+\TC{ % \heartsuit \\
+    love | \\
+    \pause or GTFO \\
+}
+\T{remember fibonacci ...}
+\C{fibo1.pl}
+\T{dead simple}
+\T{what if ...}
+\T{5 first elements containing 3 ?}
+\C{fibo_broken.pl}
+\T{\frownie}
+\SL{\frownie}{
+        \item broken fibo behaviour
+        \item have to deal with a counter
+}
+\TC{i use sh}
+\C{simple.sh}
+\TC{
+    still dead simple \\
+    no matter the size of input \\
+}
+\TC{pipe is "on demand" operator}
+\TC{fibo is a generator \\ head and grep are filters}
+\TC{also, composition is easy 
+    \\ G | F => G
+    \\ F | F => F
+}
+\T{On demand = generator + filters}
+\T{ p3rl p0wn3d! }
+\T{ I can haz | in perl ? }
+\TC{ overloading | ? \\ \pause needs OO syntax }
+\TC{ \sout{overloading |} }
+\T{steal elsewhere}
+\T{steal haskell}
+\H{fibo.hs}
+\H{fibo2.hs}
+\TC{Haskell prelude\\ take, drop, dropWhile, takeWhile, fold, ... }
+\T{I can haz prelude in perl ?}
+\T{generators encapulate states }
+\T{=> generators return closures }
+\T{closures are variables}
+\T{variables can be passed as functions}
+\T{welcome to HOP}
+\begin{frame}
+    \frametitle{from shell command to closure}
+    \begin{tabular}{l@{ => }l}
+     @ARGV     & @\_    \\
+     while (1) & sub   \\
+     say       & return (optionnal) \\
+    \end{tabular}
+\end{frame}
+% \FT{from shell command to closure}{
+%  \A{l@{ => }l}{
+%      @ARGV     & @\_    \\
+%      while (1) & sub   \\
+%      say       & return (optionnal) \\
+%   }
+% }
+
+% \C{fibo1.pl}
+% \C{fibo_closure_p1.pl}
+% \C{fibo_perlude.pl}
+% \T{i can write}
+% \C{fibo_closure_p2.pl}
+% \TC{
+%     G | F => G \\
+%     and G is a closure \\
+%     => F takes closure as argument
+% }
+% \C{fibo_closure_p2.pl}
+% \TC{
+%     F | F => F \\
+%     => F returns a closure
+% }
+% \T{think about it ...}
+% \T{i can write}
+% \C{examples/takewhile.pl}
+% \C{fibo1.pl}
+% \TC{
+%     easy \\
+%     now use it \\
+% }
+% \C{fibo_closure_p2.pl}
+% \TC{
+%     counter still there \\
+%     \frownie
+% }
+% \T{i want pipe \pause in perl}
+
+\end{document}
